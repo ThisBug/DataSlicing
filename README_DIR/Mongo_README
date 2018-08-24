@@ -1,0 +1,41 @@
+/**
+ * Mongodb 基本操作API，支持基本类似关系统型数据库的操作接口
+ *
+ * @author V哥
+ * @version 1.0
+ *
+ * [说明]
+ *
+ * 1：该版本API实现了 Mongodb 中最基本的插入/修改/查询/删除操作的封装
+ * 2：其它更高级的操作可通过 $this->getMongo() 得到原生的对象，更多API请自行查阅 Mongo PHP手册,后续版本将会对增加更多的原生API封装
+ * 3：该类所有API接口中的 $query 查询参数的使用请以下有关 [查询条件说明文档]
+ * 4:如果要存储中文字符，则一定要使用 utf8 的编码．
+ * ５：有了本类接口基本可以按关系型数据库的概念完成Mongodb的大部分开发操作，但作者还是强烈建议了解一下 Mongodb 的特性。
+ *
+ * [查询条件说明文档]
+ *
+ * 参数：array('id'=>1)
+ * 等同：where id=1
+ *
+ * 参数：array('id'=>1,'num'=>10)
+ * 等同：where id=1 and num=10
+ *
+ * 参数：array('id'=>array($mongo->cmd('>')=>5))
+ * 等同：where id>5
+ *
+ * 参数：array('id'=>array($mongo->cmd('!=')=>5))
+ * 等同：where id!=5
+ *
+ * 参数：array('id'=>array($mongo->cmd('>')=>5, $mongo->cmd('<')=>10))
+ * 等同：where id>5 and id<10
+ *
+ * 参数：array('id'=>array($mongo->cmd('in')=>array(2,5,6)))
+ * 等同：where id in (2,5,6)
+ *
+ * 参数：array('id'=>array($mongo->cmd('%')=>array(2,1)))
+ * 等同：where id % 2 = 1
+ *
+ * 参数：array($mongo->cmd('or') => array( array('id'=>array($mongo->cmd('>')=>5)), array('id'=>array($mongo->cmd('<')=>10)) ) )
+ * 等同：where id>5 or id<10
+ *
+ **/
